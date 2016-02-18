@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Stacey;
 
 import java.io.File;
@@ -11,10 +7,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Jotali
- */
 public class Tienda {
     private static final ArrayList<Usuario> usuarios=new ArrayList();
     private static final ArrayList<Producto> productos=new ArrayList();
