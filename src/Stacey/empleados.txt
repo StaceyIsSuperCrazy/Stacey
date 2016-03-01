@@ -1,0 +1,2 @@
+Jorge,Otero del Río,53820166M,jota,contraseña
+Pablo,Lago Romaní,56457645G,pablite,password

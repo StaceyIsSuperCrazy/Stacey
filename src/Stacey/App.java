@@ -5,9 +5,9 @@ import javax.swing.JOptionPane;
 public class App {
 
     public static void main(String[] args) {
-        Tienda.cargarUsuarios();
-        Tienda.cargarProductos();
+        Tienda.cargarEmpleados();
         Tienda.login();
+        Tienda.cargarProductos();
         int opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "1)Vender Producto\n2)Buscar Producto"));
         switch(opcion){
             case 1:

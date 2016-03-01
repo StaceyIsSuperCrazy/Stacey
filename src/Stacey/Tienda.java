@@ -8,19 +8,19 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class Tienda {
-    private static final ArrayList<Usuario> usuarios=new ArrayList();
     private static final ArrayList<Producto> productos=new ArrayList();
+    private static final ArrayList<Empleado> empleados=new ArrayList();
     
-    public static void cargarUsuarios(){
+    public static void cargarEmpleados(){
         String[] cadena;
         try{
-        Scanner lector = new Scanner(new File("C:\\Users\\Jota\\Documents\\ProyectosProg\\NetBeansProjects\\Proyecto2Trimestre\\src\\proyecto2trimestre\\usuarios.txt")).useDelimiter(" ");
+        Scanner lector = new Scanner(new File("src/Stacey/empleados.txt"));
         while(lector.hasNextLine()){
-            cadena=lector.nextLine().split(" ");
-            usuarios.add(new Usuario(cadena[0],cadena[1]));
+            cadena=lector.nextLine().split(",");
+            empleados.add(new Empleado(cadena[0],cadena[1],cadena[2],new Usuario(cadena[3],cadena[4])));
         }
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null, "Archivo no encontrado");
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
     
@@ -29,9 +29,10 @@ public class Tienda {
         do{
             String usuario = JOptionPane.showInputDialog("Usuario: ");
             String pass = JOptionPane.showInputDialog("Contraseña: ");
-            for(Usuario u:usuarios){
-                if(u.getUser().equals(usuario) && u.getPassword().equals(pass)){
-                    JOptionPane.showMessageDialog(null,"Usuario correcto");
+            Usuario userIntroducido = new Usuario(usuario,pass);
+            for(Empleado e:empleados){
+                if(e.getUsuario().equals(userIntroducido)){
+                    JOptionPane.showMessageDialog(null,"Bienvenido " + e.getNombre());
                     error=false;
                     break;
                 }
@@ -89,13 +90,13 @@ public class Tienda {
     public static void cargarProductos(){
         String[] cadena;
         try{
-        Scanner lector = new Scanner(new File("C:\\Users\\Jota\\Documents\\ProyectosProg\\NetBeansProjects\\Proyecto2Trimestre\\src\\proyecto2trimestre\\productos.txt")).useDelimiter(",");
+        Scanner lector = new Scanner(new File("src/Stacey/productos.txt"));
         while(lector.hasNextLine()){
             cadena=lector.nextLine().split(",");
             productos.add(new Producto(cadena[0],Float.parseFloat(cadena[1]),Byte.parseByte(cadena[2]),Integer.parseInt(cadena[3])));
         }
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null, "Archivo no encontrado");
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 }
