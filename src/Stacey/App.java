@@ -11,7 +11,7 @@ public class App {
         Tienda.login();
         Tienda.cargarProductos(rutaProducts);
         do{
-        int opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "1)Vender Producto\n2)Buscar Producto\n3)Salir"));
+        int opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "1)Vender Producto\n2)Buscar Producto\n3)Crear producto\n4)Salir"));
         switch(opcion){
             case 1:
                 Tienda.venderProducto();
@@ -21,6 +21,9 @@ public class App {
                 Tienda.buscarProducto(buscar);
                 break;
             case 3:
+                Tienda.crearProducto();
+                break;
+            case 4:
                 ManipularFichero.ManipularFichero.escribirLista(Tienda.getProductos(), rutaProducts);
                 System.exit(0);
             default:

@@ -132,6 +132,21 @@ public class Tienda {
         }
     }
     
+    public static void crearProducto(){
+        JLabel nombre = new JLabel("Nombre: ");
+        JLabel precio = new JLabel("Precio: ");
+        JLabel descuento = new JLabel("Descuento: ");
+        JLabel unidades = new JLabel("Unidades: ");
+        JTextField nombre_text = new JTextField();
+        JTextField precio_text = new JTextField();
+        JTextField descuento_text = new JTextField();
+        JTextField unidades_text = new JTextField();
+        Object[] ob = {nombre,nombre_text,precio,precio_text,descuento,descuento_text,unidades,unidades_text};
+        JOptionPane.showConfirmDialog(null, ob, "Registrar producto", JOptionPane.OK_CANCEL_OPTION);
+        productos.add(new Producto(nombre_text.getText(),Float.parseFloat(precio_text.getText()),Byte.parseByte(descuento_text.getText()),Integer.parseInt(unidades_text.getText())));
+        JOptionPane.showMessageDialog(null, "Producto creado");
+    }
+    
     
     
     
