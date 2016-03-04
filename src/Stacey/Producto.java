@@ -59,7 +59,11 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" + "codigoP=" + codigoP + ", nombre=" + nombre + ", precio=" + precio+"€" + ", descuento=" + descuento +"%"+ ", unidades=" + unidades + '}';
+        return nombre+","+precio+","+descuento+","+unidades;
+    }
+    
+    public String show(){
+        return "Codigo: "+this.codigoP+"\nNombre: "+this.nombre+"\nPrecio: "+this.precio+"\nDescuento: "+this.descuento+"%\nUnidades: "+this.unidades+"u";
     }
     
     

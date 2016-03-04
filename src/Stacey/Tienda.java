@@ -5,16 +5,27 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class Tienda {
     private static final ArrayList<Producto> productos=new ArrayList();
     private static final ArrayList<Empleado> empleados=new ArrayList();
+
+    public static ArrayList<Producto> getProductos() {
+        return productos;
+    }
+
+    public static ArrayList<Empleado> getEmpleados() {
+        return empleados;
+    }
     
-    public static void cargarEmpleados(){
+    public static void cargarEmpleados(String ruta){
         String[] cadena;
         try{
-        Scanner lector = new Scanner(new File("src/Stacey/empleados.txt"));
+        Scanner lector = new Scanner(new File(ruta));
         while(lector.hasNextLine()){
             cadena=lector.nextLine().split(",");
             empleados.add(new Empleado(cadena[0],cadena[1],cadena[2],new Usuario(cadena[3],cadena[4])));
@@ -25,23 +36,31 @@ public class Tienda {
     }
     
     public static void login(){
-        boolean error = true;
+        JPasswordField password = new JPasswordField();
+        JLabel contrasena = new JLabel("Contraseña:");
+        JLabel usuario = new JLabel("Usuario:");
+        JTextField user = new JTextField();
+        boolean condicionFin = true;
+        boolean incorrecto = true;
+        Object[] ob={usuario,user,contrasena,password};
         do{
-            String usuario = JOptionPane.showInputDialog("Usuario: ");
-            String pass = JOptionPane.showInputDialog("Contraseña: ");
-            Usuario userIntroducido = new Usuario(usuario,pass);
+        int option = JOptionPane.showConfirmDialog(null, ob, "Login",JOptionPane.OK_CANCEL_OPTION);
+        if(option==JOptionPane.OK_OPTION){
             for(Empleado e:empleados){
-                if(e.getUsuario().equals(userIntroducido)){
+                if(e.getUsuario().equals(new Usuario(user.getText(),password.getText()))){
                     JOptionPane.showMessageDialog(null,"Bienvenido " + e.getNombre());
-                    error=false;
+                    incorrecto=false;
+                    condicionFin=false;
                     break;
                 }
             }
-            if(error){
-                JOptionPane.showMessageDialog(null, "Usuario incorrecto");
-                deseaSalir();
+            if(incorrecto){
+                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
             }
-        }while(error);
+        }else{
+            System.exit(0);
+        }
+        }while(condicionFin);
     }
 
     private static void deseaSalir(){
@@ -60,7 +79,7 @@ public class Tienda {
         for(Producto p:productos){
             if(p.getNombre().contains(busqueda)){
                 notFound=false;
-                JOptionPane.showMessageDialog(null, p);
+                JOptionPane.showMessageDialog(null, p.show());
             }
         }
         if(notFound){
@@ -78,6 +97,19 @@ public class Tienda {
                     JOptionPane.showMessageDialog(null, "Producto agotado");
                 }else{
                     productos.get(i).setUnidades(productos.get(i).getUnidades()-1);
+                    float precioFinal = productos.get(i).getPrecio();
+                    //No funciona cuando el producto tiene descuento
+                    if(productos.get(i).getDescuento()!=0){
+                        precioFinal = (float)Math.floor(productos.get(i).getPrecio()-(productos.get(i).getPrecio()*productos.get(i).getDescuento()/100));
+                    }
+                    float importe;
+                    do{
+                    importe = Float.parseFloat(JOptionPane.showInputDialog("El precio del producto es de " + precioFinal + "€\nIntroduzca importe del cliente:"));
+                    if(importe<precioFinal)
+                        JOptionPane.showMessageDialog(null, "Introduzca un importe mayor al precio del producto");
+                    else
+                        JOptionPane.showMessageDialog(null, "La vuelta es de " + (importe-precioFinal) + "€");
+                    }while(importe<precioFinal);
                     JOptionPane.showMessageDialog(null, "Producto vendido\nQuedan " + productos.get(i).getUnidades() + " unidades\nGracias por su compra :)");
                 }
             }
@@ -87,10 +119,10 @@ public class Tienda {
         }
     }
     
-    public static void cargarProductos(){
+    public static void cargarProductos(String ruta){
         String[] cadena;
         try{
-        Scanner lector = new Scanner(new File("src/Stacey/productos.txt"));
+        Scanner lector = new Scanner(new File(ruta));
         while(lector.hasNextLine()){
             cadena=lector.nextLine().split(",");
             productos.add(new Producto(cadena[0],Float.parseFloat(cadena[1]),Byte.parseByte(cadena[2]),Integer.parseInt(cadena[3])));
@@ -99,4 +131,8 @@ public class Tienda {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
+    
+    
+    
+    
 }
