@@ -1,11 +1,13 @@
 
 package Stacey;
 
+
 public class Empleado {
     private String nombre;
     private String apellidos;
     private String dni;
     private Usuario usuario;
+   
     
     public Empleado(String nombre,String apellidos,String dni,Usuario usuario){
         this.nombre=nombre;
