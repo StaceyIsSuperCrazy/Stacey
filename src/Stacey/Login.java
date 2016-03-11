@@ -2,11 +2,11 @@
 package Stacey;
 
 import java.awt.Color;
-import java.awt.event.KeyEvent;
+
 
 public class Login extends javax.swing.JFrame {
     
-    private static Usuario usuarioLogueado=new Usuario();
+    static Empleado empleadoLogueado;
 
     public Login() {
         initComponents();
@@ -36,11 +36,6 @@ public class Login extends javax.swing.JFrame {
         entrar_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 entrar_btnActionPerformed(evt);
-            }
-        });
-        entrar_btn.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                entrar_btnKeyPressed(evt);
             }
         });
 
@@ -119,7 +114,7 @@ public class Login extends javax.swing.JFrame {
         Usuario usuario = new Usuario(user_text.getText(),password_text.getText());
         for(Empleado e:Tienda.getEmpleados()){
                 if(e.getUsuario().equals(usuario)){
-                    usuarioLogueado=usuario;
+                    empleadoLogueado=e;
                     Principal aplicacion_form = new Principal();
                     aplicacion_form.setVisible(true);
                     setVisible(false);
@@ -133,18 +128,13 @@ public class Login extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_entrar_btnActionPerformed
 
-    private void entrar_btnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_entrar_btnKeyPressed
-        if(evt.getKeyChar()==KeyEvent.VK_ENTER){
-            entrar_btnActionPerformed(null);
-        }
-    }//GEN-LAST:event_entrar_btnKeyPressed
-
     
     
     public static void main(String args[]) {
         Tienda.cargarEmpleados("src/Ficheros/empleados.txt");
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Login().setVisible(true);
             }

@@ -11,8 +11,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class Tienda {
-    private static final ArrayList<Producto> productos=new ArrayList();
-    private static final ArrayList<Empleado> empleados=new ArrayList();
+    private static ArrayList<Producto> productos=new ArrayList();
+    private static ArrayList<Empleado> empleados=new ArrayList();
 
     public static ArrayList<Producto> getProductos() {
         return productos;
