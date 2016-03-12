@@ -10,6 +10,7 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
+        Tienda.cargarEmpleados("src/Ficheros/empleados.txt");
     }
 
     @SuppressWarnings("unchecked")
@@ -108,7 +109,7 @@ public class Login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
- 
+    
     private void entrar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrar_btnActionPerformed
         boolean incorrecto=true;
         Usuario usuario = new Usuario(user_text.getText(),password_text.getText());
@@ -128,18 +129,6 @@ public class Login extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_entrar_btnActionPerformed
 
-    
-    
-    public static void main(String args[]) {
-        Tienda.cargarEmpleados("src/Ficheros/empleados.txt");
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton entrar_btn;
