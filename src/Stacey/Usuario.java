@@ -28,6 +28,13 @@ public class Usuario {
     }
 
     @Override
+    public String toString() {
+        return user + "," + password;
+    }
+
+    
+    
+    @Override
     public int hashCode() {
         int hash = 7;
         return hash;

@@ -11,6 +11,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class Tienda {
+    private static Empleado empleadoTrabajando;
     private static final ArrayList<Producto> productos=new ArrayList();
     private static final ArrayList<Empleado> empleados=new ArrayList();
 
@@ -28,7 +29,7 @@ public class Tienda {
         Scanner lector = new Scanner(new File(ruta));
         while(lector.hasNextLine()){
             cadena=lector.nextLine().split(",");
-            empleados.add(new Empleado(cadena[0],cadena[1],cadena[2],new Usuario(cadena[3],cadena[4])));
+            empleados.add(new Empleado(cadena[0],cadena[1],cadena[2],new Usuario(cadena[3],cadena[4]),Integer.parseInt(cadena[5])));
         }
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -48,9 +49,11 @@ public class Tienda {
         if(option==JOptionPane.OK_OPTION){
             for(Empleado e:empleados){
                 if(e.getUsuario().equals(new Usuario(user.getText(),password.getText()))){
+                    empleadoTrabajando=e;
                     JOptionPane.showMessageDialog(null,"Bienvenido " + e.getNombre());
-                    incorrecto=false;
+                    e.getTiempo().run();
                     condicionFin=false;
+                    incorrecto=false;
                     break;
                 }
             }
@@ -111,6 +114,7 @@ public class Tienda {
                         JOptionPane.showMessageDialog(null, "La vuelta es de " + (importe-precioFinal) + "€");
                     }while(importe<precioFinal);
                     JOptionPane.showMessageDialog(null, "Producto vendido\nQuedan " + productos.get(i).getUnidades() + " unidades\nGracias por su compra :)");
+                    empleadoTrabajando.setProductosVendidos(empleadoTrabajando.getProductosVendidos()+1);
                 }
             }
         }

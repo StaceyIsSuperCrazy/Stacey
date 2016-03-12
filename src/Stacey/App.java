@@ -25,6 +25,7 @@ public class App {
                 break;
             case 4:
                 ManipularFichero.ManipularFichero.escribirLista(Tienda.getProductos(), rutaProducts);
+                ManipularFichero.ManipularFichero.escribirLista(Tienda.getEmpleados(), rutaEmployers);
                 System.exit(0);
             default:
                 JOptionPane.showMessageDialog(null, "No es una opción válida.");
