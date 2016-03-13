@@ -1,4 +1,5 @@
-bollos,0.9,10,5000000
-bollos extralargos,1.1,0,497
-zumo mediterraneo,1.0,0,1000
-Leche,3.0,0,9
+bollos,0.9,5000000
+bollos extralargos,1.1,493
+zumo mediterraneo,1.0,996
+Leche,3.0,5
+Galletas,4.0,20

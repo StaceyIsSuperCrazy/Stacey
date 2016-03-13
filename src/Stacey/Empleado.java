@@ -7,13 +7,15 @@ public class Empleado {
     private String apellidos;
     private String dni;
     private Usuario usuario;
+    private int vendido;
    
     
-    public Empleado(String nombre,String apellidos,String dni,Usuario usuario){
+    public Empleado(String nombre,String apellidos,String dni,Usuario usuario,int vendido){
         this.nombre=nombre;
         this.apellidos=apellidos;
         this.dni=dni;
         this.usuario=usuario;
+        this.vendido=vendido;
     }
 
     public String getNombre() {
@@ -46,6 +48,19 @@ public class Empleado {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public int getVendido() {
+        return vendido;
+    }
+
+    public void setVendido(int vendido) {
+        this.vendido = vendido;
+    }
+
+    @Override
+    public String toString() {
+        return nombre + "," + apellidos + "," + dni + "," + usuario + "," + vendido;
     }
     
     

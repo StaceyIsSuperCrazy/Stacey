@@ -6,14 +6,12 @@ public class Producto {
     private String codigoP;
     private String nombre;
     private float precio;
-    private byte descuento;
     private int unidades;
     
-    public Producto(String nombre,float precio,byte descuento,int unidades){
+    public Producto(String nombre,float precio,int unidades){
         this.codigoP=String.valueOf(codigo++);
         this.nombre=nombre;
         this.precio=precio;
-        this.descuento=descuento;
         this.unidades=unidades;
     }
 
@@ -41,14 +39,6 @@ public class Producto {
         this.precio = precio;
     }
 
-    public byte getDescuento() {
-        return descuento;
-    }
-
-    public void setDescuento(byte descuento) {
-        this.descuento = descuento;
-    }
-
     public int getUnidades() {
         return unidades;
     }
@@ -59,11 +49,11 @@ public class Producto {
 
     @Override
     public String toString() {
-        return nombre+","+precio+","+descuento+","+unidades;
+        return nombre+","+precio+","+unidades;
     }
     
     public String show(){
-        return "Codigo: "+this.codigoP+"\nNombre: "+this.nombre+"\nPrecio: "+this.precio+"\nDescuento: "+this.descuento+"%\nUnidades: "+this.unidades+"u";
+        return "Codigo: "+this.codigoP+"\nNombre: "+this.nombre+"\nPrecio: "+this.precio+"\nDescuento:\nUnidades: "+this.unidades+"u";
     }
     
     

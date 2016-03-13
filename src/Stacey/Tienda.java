@@ -28,7 +28,7 @@ public class Tienda {
         Scanner lector = new Scanner(new File(ruta));
         while(lector.hasNextLine()){
             cadena=lector.nextLine().split(",");
-            empleados.add(new Empleado(cadena[0],cadena[1],cadena[2],new Usuario(cadena[3],cadena[4])));
+            empleados.add(new Empleado(cadena[0],cadena[1],cadena[2],new Usuario(cadena[3],cadena[4]),Integer.parseInt(cadena[5])));
         }
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -87,65 +87,19 @@ public class Tienda {
         }
     }
     
-    public static void venderProducto(){
-        boolean notFound = true;
-        String codVender = JOptionPane.showInputDialog("Codigo del producto a vender: ");
-        for(int i=0;i<productos.size();i++){
-            if(productos.get(i).getCodigoP().equals(codVender)){
-                notFound=false;
-                if(productos.get(i).getUnidades()==0){
-                    JOptionPane.showMessageDialog(null, "Producto agotado");
-                }else{
-                    productos.get(i).setUnidades(productos.get(i).getUnidades()-1);
-                    float precioFinal = productos.get(i).getPrecio();
-                    //No funciona cuando el producto tiene descuento
-                    if(productos.get(i).getDescuento()!=0){
-                        precioFinal = (float)Math.floor(productos.get(i).getPrecio()-(productos.get(i).getPrecio()*productos.get(i).getDescuento()/100));
-                    }
-                    float importe;
-                    do{
-                    importe = Float.parseFloat(JOptionPane.showInputDialog("El precio del producto es de " + precioFinal + "€\nIntroduzca importe del cliente:"));
-                    if(importe<precioFinal)
-                        JOptionPane.showMessageDialog(null, "Introduzca un importe mayor al precio del producto");
-                    else
-                        JOptionPane.showMessageDialog(null, "La vuelta es de " + (importe-precioFinal) + "€");
-                    }while(importe<precioFinal);
-                    JOptionPane.showMessageDialog(null, "Producto vendido\nQuedan " + productos.get(i).getUnidades() + " unidades\nGracias por su compra :)");
-                }
-            }
-        }
-        if(notFound){
-            JOptionPane.showMessageDialog(null, "Producto no encontrado");
-        }
-    }
-    
     public static void cargarProductos(String ruta){
         String[] cadena;
         try{
         Scanner lector = new Scanner(new File(ruta));
         while(lector.hasNextLine()){
             cadena=lector.nextLine().split(",");
-            productos.add(new Producto(cadena[0],Float.parseFloat(cadena[1]),Byte.parseByte(cadena[2]),Integer.parseInt(cadena[3])));
+            productos.add(new Producto(cadena[0],Float.parseFloat(cadena[1]),Integer.parseInt(cadena[2])));
         }
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
     
-    public static void crearProducto(){
-        JLabel nombre = new JLabel("Nombre: ");
-        JLabel precio = new JLabel("Precio: ");
-        JLabel descuento = new JLabel("Descuento: ");
-        JLabel unidades = new JLabel("Unidades: ");
-        JTextField nombre_text = new JTextField();
-        JTextField precio_text = new JTextField();
-        JTextField descuento_text = new JTextField();
-        JTextField unidades_text = new JTextField();
-        Object[] ob = {nombre,nombre_text,precio,precio_text,descuento,descuento_text,unidades,unidades_text};
-        JOptionPane.showConfirmDialog(null, ob, "Registrar producto", JOptionPane.OK_CANCEL_OPTION);
-        productos.add(new Producto(nombre_text.getText(),Float.parseFloat(precio_text.getText()),Byte.parseByte(descuento_text.getText()),Integer.parseInt(unidades_text.getText())));
-        JOptionPane.showMessageDialog(null, "Producto creado");
-    }
     
     
     

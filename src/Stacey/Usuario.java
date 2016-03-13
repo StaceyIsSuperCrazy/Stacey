@@ -49,6 +49,11 @@ public class Usuario {
         }
         
     }
+
+    @Override
+    public String toString() {
+        return user + "," + password;
+    }
     
     
     
