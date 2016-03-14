@@ -8,7 +8,10 @@ import java.util.Scanner;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-
+/**
+ * Clase principal de la aplicación, es donde se encuentran la mayoría de los métodos utilizados
+ * @author jota
+ */
 public class Principal extends javax.swing.JFrame {
     private static ArrayList<Producto> productos=new ArrayList();
     private static ArrayList<Empleado> empleados=new ArrayList();
@@ -47,7 +50,7 @@ public class Principal extends javax.swing.JFrame {
         Principal.modeloLista = modeloLista;
     }
     
-    public Principal() {
+    public Principal(){
         initComponents();
         cargarProductos("src/Ficheros/productos.txt");
         usuario_lbl.setText(empleadoLogueado.getNombre()+" "+empleadoLogueado.getApellidos());
@@ -87,11 +90,6 @@ public class Principal extends javax.swing.JFrame {
         });
 
         usuario_lbl.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        usuario_lbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                usuario_lblMouseClicked(evt);
-            }
-        });
 
         productos_jlist.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -198,7 +196,10 @@ public class Principal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Método que carga en un arrayList los objetos de tipo producto
+     * @param ruta Ruta al fichero
+     */
     public static void cargarProductos(String ruta){
         String[] cadena;
         try{
@@ -211,7 +212,10 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-    
+    /**
+     * Método que carga en un arrayList los objetos de tipo empleado
+     * @param ruta Ruta al fichero
+     */
     public static void cargarEmpleados(String ruta){
         String[] cadena;
         try{
@@ -224,7 +228,11 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-    
+    /**
+     * Vende un producto de la tienda, resta una unidad al producto en el caso de que el importe introducido
+     * sea mayor al establecido
+     * @param evt 
+     */
     private void vender_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vender_btnActionPerformed
         String nombreP = productos_jlist.getSelectedValue();
         for(Producto p:productos){
@@ -246,12 +254,19 @@ public class Principal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_vender_btnActionPerformed
-
+    /**
+     * Escribe en los dos ficheros donde se guardan los datos antes de cerrar la aplicación
+     * @param evt 
+     */
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         ManipularFichero.ManipularFichero.escribirLista(productos, "src/Ficheros/productos.txt");
         ManipularFichero.ManipularFichero.escribirLista(empleados, "src/Ficheros/empleados.txt");
     }//GEN-LAST:event_formWindowClosing
-
+    
+    /**
+     * Escribe en el formulario los atributos del producto seleccionado en el jlist
+     * @param evt 
+     */
     private void productos_jlistValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_productos_jlistValueChanged
         Producto p = productos.get(productos_jlist.getSelectedIndex());
         nombre_text.setText(p.getNombre());
@@ -259,10 +274,6 @@ public class Principal extends javax.swing.JFrame {
         precio_text.setText(String.valueOf(p.getPrecio())+"€");
         unidades_text.setText(String.valueOf(p.getUnidades())+"u");
     }//GEN-LAST:event_productos_jlistValueChanged
-
-    private void usuario_lblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuario_lblMouseClicked
-        
-    }//GEN-LAST:event_usuario_lblMouseClicked
 
     
 

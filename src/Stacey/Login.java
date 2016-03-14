@@ -3,7 +3,10 @@ package Stacey;
 
 import java.awt.Color;
 
-
+/**
+ * Clase para mostrar la interfaz de login
+ * @author jota
+ */
 public class Login extends javax.swing.JFrame {
 
     public Login() {
@@ -109,7 +112,10 @@ public class Login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
+    /**
+     * Método para validar el usuario y contraseña introducidos
+     * @param evt 
+     */
     private void entrar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrar_btnActionPerformed
         boolean incorrecto=true;
         Usuario usuario = new Usuario(user_text.getText(),password_text.getText());

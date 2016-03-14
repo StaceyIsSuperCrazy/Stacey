@@ -1,6 +1,10 @@
 
 package Stacey;
 
+/**
+ * Permite instanciar objetos de tipo producto
+ * @author jota
+ */
 public class Producto {
     private static int codigo=0;
     private String codigoP;
@@ -52,6 +56,10 @@ public class Producto {
         return nombre+","+precio+","+unidades;
     }
     
+    /**
+     * Muestra una cadena de caracteres que representa el producto en concreto
+     * @return Devuelve la representación del objeto
+     */
     public String show(){
         return "Codigo: "+this.codigoP+"\nNombre: "+this.nombre+"\nPrecio: "+this.precio+"\nDescuento:\nUnidades: "+this.unidades+"u";
     }
