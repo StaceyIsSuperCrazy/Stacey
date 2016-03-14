@@ -133,16 +133,16 @@ public class Principal extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nombre_lbl)
-                    .addComponent(codigo_lbl)
-                    .addComponent(precio_lbl)
-                    .addComponent(unidades_lbl))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nombre_lbl, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(codigo_lbl, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(precio_lbl, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(unidades_lbl, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -159,7 +159,7 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(precio_text, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(vender_btn))
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(509, 509, 509)
                 .addComponent(usuario_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                 .addContainerGap())
@@ -239,7 +239,7 @@ public class Principal extends javax.swing.JFrame {
                         p.setUnidades(p.getUnidades()-1);
                         empleadoVendido_lbl.setText(String.valueOf(Integer.parseInt(empleadoVendido_lbl.getText())+1));
                         empleadoLogueado.setVendido(empleadoLogueado.getVendido()+1);
-                        JOptionPane.showMessageDialog(this, "Producto vendido. Quedan " + p.getUnidades() +" unidades\nLa cantidad a devolver es "+(importe-p.getPrecio()) + "€");
+                        JOptionPane.showMessageDialog(this, "Producto vendido. Quedan " + p.getUnidades() +" unidades\nLa cantidad a devolver es "+(float)(importe-p.getPrecio()) + "€");
                     }
                 }
                 break;

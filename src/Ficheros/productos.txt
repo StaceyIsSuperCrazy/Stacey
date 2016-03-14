@@ -1,5 +1,12 @@
 bollos,0.9,5000000
 bollos extralargos,1.1,492
 zumo mediterraneo,1.0,996
-Leche,3.0,5
-Galletas,4.0,20
+leche,3.0,5
+galletas,4.0,19
+agua,1.0,9
+pan,2.0,198
+powerade,3.0,100
+donuts,2.0,300
+cocacola,6.0,100
+empanadilla bacalao,2.0,50
+jamón ibérico,5.0,8
