@@ -5,12 +5,10 @@ import java.awt.Color;
 
 
 public class Login extends javax.swing.JFrame {
-    
-    static Empleado empleadoLogueado;
 
     public Login() {
         initComponents();
-        Tienda.cargarEmpleados("src/Ficheros/empleados.txt");
+        Principal.cargarEmpleados("src/Ficheros/empleados.txt");
         
     }
 
@@ -115,9 +113,9 @@ public class Login extends javax.swing.JFrame {
     private void entrar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrar_btnActionPerformed
         boolean incorrecto=true;
         Usuario usuario = new Usuario(user_text.getText(),password_text.getText());
-        for(Empleado e:Tienda.getEmpleados()){
+        for(Empleado e:Principal.getEmpleados()){
                 if(e.getUsuario().equals(usuario)){
-                    empleadoLogueado=e;
+                    Principal.setEmpleadoLogueado(e);
                     Principal aplicacion_form = new Principal();
                     aplicacion_form.setVisible(true);
                     setVisible(false);
