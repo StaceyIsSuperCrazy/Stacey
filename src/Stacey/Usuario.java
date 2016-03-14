@@ -1,6 +1,10 @@
 
 package Stacey;
-
+/**
+ * Clase usuario que tiene un objeto por cada empleado. Sirve para
+ * loguearse en la aplicación
+ * @author Jorge
+ */
 public class Usuario {
     private String user;
     private String password;

@@ -1,6 +1,11 @@
 
 package Stacey;
 
+/**
+ * Clase empleado, representa cada trabajador de la tienda o local que se quiere
+ * gestionar
+ * @author Jorge
+ */
 
 public class Empleado {
     private String nombre;
